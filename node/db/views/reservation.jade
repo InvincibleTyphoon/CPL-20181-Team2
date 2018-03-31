@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+    body
+        form(action='/res_result' method='post')
+            p
+                select
+                    option(value=1) 내과
+                    option(value=2) 안과
+                    option(value=3) 정형외과
+                    option(value=4) 이비인후과
+                    option(value=5) 소아과
+                    option(value=6) 외과
+                    option(value=7) 신경외과
+                    option(value=8) 정신과
+                    option(value=9) 치과
+                    option(value=10) 피부과
+            p
+                input(type='text' name='symptom' placeholder='symptom')
+            p
+                input(type='date' name='date')
+            p
+                input(type='time' name='time')
+            
