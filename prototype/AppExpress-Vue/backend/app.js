@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// 만든 라우터 api 모듈 획득 ////
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var loginRouter = require('./routes/logins');
 var app = express();
 
 // view engine setup
@@ -19,8 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 실제 만든거 라우팅 ////
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/logins', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

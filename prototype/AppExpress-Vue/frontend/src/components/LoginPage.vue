@@ -28,7 +28,12 @@
       // 로그인 정보 보내기
       sendLogin() {
         console.log(this.id, this.password);
-      }
+        this.$http.get('http://localhost:3000/api/logins?id=' + this.id + '&pw=' + this.password)
+        .then((response) => {
+          console.log(response);
+          console.log(response.request.response);
+        })
+      },
     }
   }
 </script>
