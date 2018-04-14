@@ -1,0 +1,18 @@
+설명
+
+publisher.js가 서버측, subscribe.js가 클라이언트 측이다.
+
+cmd 창으로 mos1.14 폴더에서 mosquitto -v 로 실행하면 mosquitto 서버가 열린다.
+(라즈베리파이의 경우 mosquitto를 설치해 두면, 따로 실행 할 필요 없이 라즈베리파이 켤때 자동으로 서버가 열리는 모양)
+
+우선 지금은 루프백 주소로 되게 해 뒀고, 서버랑 클라이언트 분리해서 테스트 하려면 ip주소 확인해서 mqtt.connect()에 주소를 바꿔 적어주면 된다.
+
+실행법
+1. 서버측에서 mosquitto -v로 mosquitto 서버를 연다.
+
+2. 서버와 클라이언트 프로그램을 실행한다. (순서는 상관 없음)
+(publisher.js, subscribe.js)
+
+참고자료
+http://leanq.tistory.com/26
+
