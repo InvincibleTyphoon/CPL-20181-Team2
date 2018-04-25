@@ -1,0 +1,109 @@
+<template>
+  <v-ons-page>
+    <v-ons-toolbar class="home-toolbar">
+      <div class="left">
+        <v-ons-toolbar-button @click="$emit('toggleMenu')">
+          <v-ons-icon icon="fa-bars"></v-ons-icon>
+        </v-ons-toolbar-button>
+      </div>
+      <div class="center">{{ msg }}</div>
+    </v-ons-toolbar>
+
+    <div class="header">
+      <img src="../assets/logo.png" alt="vue-logo">
+    </div>
+
+
+    <!-- login session -->
+    <v-ons-list-title>Login</v-ons-list-title>
+
+    <!-- input -->
+    <v-ons-list>
+      <v-ons-list-item>
+        <div>ID</div>
+        <div>
+          <v-ons-input></v-ons-input>
+        </div>
+      </v-ons-list-item>
+      <v-ons-list-item>
+        <div>PW</div>
+        <div>
+          <v-ons-input></v-ons-input>
+        </div>
+      </v-ons-list-item>
+    </v-ons-list>
+
+    <!-- buttons -->
+    <v-ons-row>
+      <v-ons-col>
+        <v-ons-button class="someButton">Log in</v-ons-button>
+      </v-ons-col>
+      <v-ons-col>
+        <v-ons-button class="someButton">Sign up</v-ons-button>
+      </v-ons-col>
+    </v-ons-row>
+    <v-ons-row>
+      <v-ons-button modifier="large" @click="$ons.notification.alert('짜증나!')">Push Alarm Test</v-ons-button>
+    </v-ons-row>
+    <!-- login session end -->
+
+
+  </v-ons-page>
+</template>
+
+<script>
+export default {
+  name: 'home',
+  data () {
+    return {
+      msg: 'Login',
+    }
+  },
+  methods: {
+    notify (message) {
+      $ons.notification.alert(message);
+    },
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.header {
+  text-align: center;
+}
+
+img {
+  max-width: 300px;
+}
+
+.someButton {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}
+
+ons-button {
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+}
+
+ons-input {
+  margin-left: 30px;
+  width: 100%;
+}
+
+ons-list-title {
+  text-transform: none;
+}
+
+ons-list-title:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+ons-card {
+  text-align: center;
+}
+</style>
