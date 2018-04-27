@@ -4,10 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// define router ////
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+// define mqtt and client ///////////
 var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://127.0.0.1');
+var client = mqtt.connect('mqtt://127.0.0.1'); // 여기에 ip 정보를 입력해줘야함
+// 기본 loopback ip : 127.0.0.1로 테스트 환경 구축
+// github에 보안상 이슈로 loopback ip 그대로 둘예정
+// 따로 공지해준 ip로 수정해서 쓰길 바람
 
 var app = express();
 
@@ -41,10 +47,14 @@ app.use(function(err, req, res, next) {
 });
 
 
+
+/////// Publising to MQTT Broker ///////////////////////////////////////////////
+
 // mqtt 관련. 클라이언트 접속시 호출
 // 클라이언트에게 greetings, time 의 topic을 구독하게 함
 // 테스트를 위해서 3초마다 메시지를 publish함
 client.on('connect', function () {
+  console.log("mqtt: connect");
   client.subscribe('greetings'); 
   client.subscribe('time');
   publish("greetings", "Nice to meet you.");
