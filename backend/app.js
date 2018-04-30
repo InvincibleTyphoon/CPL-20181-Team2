@@ -7,13 +7,7 @@ var logger = require('morgan');
 // define router ////
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-// define mqtt and client ///////////
-var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://127.0.0.1'); // 여기에 ip 정보를 입력해줘야함
-// 기본 loopback ip : 127.0.0.1로 테스트 환경 구축
-// github에 보안상 이슈로 loopback ip 그대로 둘예정
-// 따로 공지해준 ip로 수정해서 쓰길 바람
+var loginRouter = require('./routes/logins');
 
 var app = express();
 
@@ -27,8 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 실제 만든거 라우팅 /////
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/logins', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,6 +45,12 @@ app.use(function(err, req, res, next) {
 
 
 /////// Publising to MQTT Broker ///////////////////////////////////////////////
+// define mqtt and client ///////////
+var mqtt = require('mqtt')
+var client = mqtt.connect('mqtt://127.0.0.1'); // 여기에 ip 정보를 입력해줘야함
+// 기본 loopback ip : 127.0.0.1로 테스트 환경 구축
+// github에 보안상 이슈로 loopback ip 그대로 둘예정
+// 따로 공지해준 ip로 수정해서 쓰길 바람
 
 // mqtt 관련. 클라이언트 접속시 호출
 // 클라이언트에게 greetings, time 의 topic을 구독하게 함

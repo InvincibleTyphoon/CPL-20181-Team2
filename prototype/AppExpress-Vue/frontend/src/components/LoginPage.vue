@@ -10,8 +10,6 @@
         <button v-on:click="sendLogin">Log in</button>
         <button>Sign up</button>
       </p>
-
-    </ul>
   </div>
 </template>
 

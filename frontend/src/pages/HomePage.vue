@@ -20,15 +20,13 @@
     <!-- input -->
     <v-ons-list>
       <v-ons-list-item>
-        <div>ID</div>
         <div>
-          <v-ons-input></v-ons-input>
+          <v-ons-input placeholder="ID" v-model="dataID"></v-ons-input>
         </div>
       </v-ons-list-item>
       <v-ons-list-item>
-        <div>PW</div>
         <div>
-          <v-ons-input></v-ons-input>
+          <v-ons-input placeholder="password" v-model="dataPW" type="password"></v-ons-input>
         </div>
       </v-ons-list-item>
     </v-ons-list>
@@ -36,14 +34,14 @@
     <!-- buttons -->
     <v-ons-row>
       <v-ons-col>
-        <v-ons-button class="someButton">Log in</v-ons-button>
+        <v-ons-button @click="loginCheck()" class="someButton">Log in</v-ons-button>
       </v-ons-col>
       <v-ons-col>
         <v-ons-button class="someButton">Sign up</v-ons-button>
       </v-ons-col>
     </v-ons-row>
     <v-ons-row>
-      <v-ons-button modifier="large" @click="$ons.notification.alert('짜증나!')">Push Alarm Test</v-ons-button>
+      <v-ons-button modifier="large" @click="notify($ons.notification, '이건가?')">Push Alarm Test</v-ons-button>
     </v-ons-row>
     <!-- login session end -->
 
@@ -57,11 +55,22 @@ export default {
   data () {
     return {
       msg: 'Login',
+      dataID: '',
+      dataPW: '',
     }
   },
   methods: {
-    notify (message) {
-      $ons.notification.alert(message);
+    notify (notiobj, message) {
+      notiobj.alert(message);
+    },
+
+    loginCheck () {
+      console.log(this.dataID, this.dataPW);
+      this.$http.get('http://localhost:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
+      .then((response) => {
+        console.log(response);
+        console.log(response.request.response);
+      });
     },
   }
 }

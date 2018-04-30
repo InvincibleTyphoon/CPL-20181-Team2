@@ -9,9 +9,11 @@ import Vue from 'vue'
 import $ons from 'vue-onsenui/esm'
 import * as VOns from './vue-onsen-components'
 import App from './App'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$http = axios
 Vue.use($ons)
 Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
 
