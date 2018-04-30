@@ -1,5 +1,14 @@
 <template>
+    <v-ons-navigator swipeable
+    :page-stack="pageStack"
+    @push-page="pageStack.push($event)"
+    ></v-ons-navigator>
+</template>
+
+
+<template>
   <v-ons-page id="app">
+
     <v-ons-splitter>
       <v-ons-splitter-side swipeable collapse width="250px"
         :animation="$ons.platform.isAndroid() ? 'overlay' : 'reveal'"
@@ -17,17 +26,21 @@
 <script>
 import HomePage from './pages/HomePage'
 import MenuPage from './pages/MenuPage'
+import MainPage from './pages/MainPage'
+
 
 export default {
   name: 'app',
   data () {
     return {
-      menuIsOpen: false
+      menuIsOpen: false,
+      pageStack: [HomePage],
     }
   },
   components: {
     HomePage,
-    MenuPage
+    MenuPage,
+    MainPage
   }
 }
 </script>

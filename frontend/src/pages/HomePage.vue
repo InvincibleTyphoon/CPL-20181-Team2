@@ -1,4 +1,4 @@
-<template>
+<template id="HomePage">
   <v-ons-page>
     <v-ons-toolbar class="home-toolbar">
       <div class="left">
@@ -57,6 +57,9 @@ export default {
       msg: 'Login',
       dataID: '',
       dataPW: '',
+      pageList: {
+
+      },
     }
   },
   methods: {
@@ -71,7 +74,14 @@ export default {
         console.log(response);
         console.log(response.request.response);
       });
+
+      // push page navigator
+
+      console.log(this.pageList);
+      this.$emit('push-page', this.MainPage);
     },
+
+
   }
 }
 </script>

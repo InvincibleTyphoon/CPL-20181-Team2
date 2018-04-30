@@ -1,4 +1,4 @@
-<template>
+<template id="MenuPage">
   <v-ons-page>
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
     <div class="header">

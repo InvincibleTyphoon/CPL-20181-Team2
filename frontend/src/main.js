@@ -11,11 +11,11 @@ import * as VOns from './vue-onsen-components'
 import App from './App'
 import axios from 'axios'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.prototype.$http = axios
-Vue.use($ons)
-Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
+Vue.prototype.$http = axios;
+Vue.use($ons);
+Object.values(VOns).forEach(comp => Vue.component(comp.name, comp));
 
 /* eslint-disable no-new */
 new Vue({
