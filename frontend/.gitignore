@@ -1,5 +1,14 @@
 .DS_Store
-node_modules/
+node_modules/**
+!node_modules/onsenui/css/onsen-css-components.css
+!node_modules/onsenui/css/onsen-css-components.min.css
+!node_modules/onsenui/css/onsen-core.css
+!node_modules/onsenui/css/onsen-core.min.css
+!node_modules/onsenui/css-components-src/src/theme.css
+!node_modules/onsenui/css-components-src/src/onsen-css-components.css
+!node_modules/onsenui/css-components-src/src/onsen-css-components.min.css
+
+
 /dist/
 npm-debug.log*
 yarn-debug.log*

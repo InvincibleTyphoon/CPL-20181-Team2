@@ -1,4 +1,4 @@
-<template id="HomePage">
+<template id="LoginPage">
   <v-ons-page>
     <v-ons-toolbar class="home-toolbar">
       <div class="left">
@@ -50,11 +50,13 @@
 </template>
 
 <script>
+import MainPage from './MainPage.vue'
+
 export default {
-  name: 'home',
+  name: 'login',
   data () {
     return {
-      msg: 'Login',
+      msg: 'Hoscare',
       dataID: '',
       dataPW: '',
       pageList: {
@@ -72,13 +74,17 @@ export default {
       this.$http.get('http://localhost:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
       .then((response) => {
         console.log(response);
-        console.log(response.request.response);
+        if (response.data == 'fail') {
+          this.notify(this.$ons.notification, '로그인 정보가 알맞지 않습니다.');
+        }
+        else {
+          this.$emit('push-page', MainPage);
+        }
       });
 
-      // push page navigator
 
-      console.log(this.pageList);
-      this.$emit('push-page', this.MainPage);
+      // push page navigator
+      //this.$emit('push-page', MainPage);
     },
 
 

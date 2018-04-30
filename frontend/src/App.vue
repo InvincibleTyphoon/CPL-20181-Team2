@@ -1,12 +1,4 @@
 <template>
-    <v-ons-navigator swipeable
-    :page-stack="pageStack"
-    @push-page="pageStack.push($event)"
-    ></v-ons-navigator>
-</template>
-
-
-<template>
   <v-ons-page id="app">
 
     <v-ons-splitter>
@@ -17,16 +9,20 @@
       </v-ons-splitter-side>
 
       <v-ons-splitter-content>
-        <home-page @toggleMenu="menuIsOpen = !menuIsOpen"></home-page>
+        <v-ons-navigator swipeable
+          :page-stack="pageStack"
+          @push-page="pageStack.push($event)"
+          @toggleMenu="menuIsOpen = !menuIsOpen"
+        ></v-ons-navigator>
+        <!--<main-page @toggleMenu="menuIsOpen = !menuIsOpen"></main-page>-->
       </v-ons-splitter-content>
     </v-ons-splitter>
   </v-ons-page>
 </template>
 
 <script>
-import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import MenuPage from './pages/MenuPage'
-import MainPage from './pages/MainPage'
 
 
 export default {
@@ -34,13 +30,12 @@ export default {
   data () {
     return {
       menuIsOpen: false,
-      pageStack: [HomePage],
+      pageStack: [LoginPage],
     }
   },
   components: {
-    HomePage,
+    LoginPage,
     MenuPage,
-    MainPage
   }
 }
 </script>

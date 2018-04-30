@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
+/*
 /////// Publising to MQTT Broker ///////////////////////////////////////////////
 // define mqtt and client ///////////
 var mqtt = require('mqtt')
@@ -80,5 +80,5 @@ client.on('message', function (topic, message) {
 function publish(topic, message) {
   client.publish(topic, message);
 }
-
+*/
 module.exports = app;

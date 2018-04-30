@@ -1,26 +1,71 @@
 <template id="MainPage">
   <v-ons-page>
-    <v-ons-toolbar>
-      <div class="center">MainPage</div>
+    <v-ons-toolbar class="home-toolbar">
+      <div class="left">
+        <v-ons-toolbar-button @click="$emit('toggleMenu')">
+          <v-ons-icon icon="fa-bars"></v-ons-icon>
+        </v-ons-toolbar-button>
+      </div>
+      <div class="center">{{ msg }}</div>
     </v-ons-toolbar>
-    <p style="text-align: center">
-      <v-ons-button @click="push()">Push Page 2</v-ons-button>
-    </p>
+
+    <v-ons-tabbar swipeable position="auto"
+      :tabs="tabs"
+      :visible="true"
+      :index.sync="activeIndex"
+    >
+    </v-ons-tabbar>
   </v-ons-page>
 </template>
 
 <script>
+import AlarmPage from './MainPages/AlarmPage.vue'
+import ReservPage from './MainPages/ReservPage.vue'
+import PersonalPage from './MainPages/PersonalPage.vue'
+import CouncelPage from './MainPages/CouncelPage.vue'
+import SettingPage from './MainPages/SettingPage.vue'
+
 export default {
   name: 'MainPage',
+
   data () {
     return {
-
+      msg: 'Hoscare',
+      activeIndex: 2,
+      tabs: [
+        {
+          label: '알람',
+          page: AlarmPage,
+        },
+        {
+          label: '예약',
+          page: ReservPage,
+        },
+        {
+          label: '개인',
+          page: PersonalPage,
+        },
+        {
+          label: '상담',
+          page: CouncelPage,
+        },
+        {
+          label: '설정',
+          page: SettingPage,
+        }
+      ],
     }
   },
+
   methods: {
-    push() {
-      this.$emit('push-page', this.MainPage);
-    },
+  },
+
+  components: {
+    AlarmPage,
+    ReservPage,
+    PersonalPage,
+    CouncelPage,
+    SettingPage
   }
 };
 
