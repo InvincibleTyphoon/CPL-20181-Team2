@@ -11,7 +11,7 @@ const dbInfo = {
         database: 'emr_data'
 };
 
-/*
+
 function connectDB() {
         var db = mysql.createConnection(dbInfo);
         db.connect(function(err) {
@@ -24,12 +24,12 @@ function connectDB() {
 
         return db;
 }
-*/
+
 
 router.get('/', function (req, res, next) {
         var id = -1;
 
-        /*
+        
         async.waterfall([
                 function(callback) {
                         var err = null;
@@ -77,33 +77,30 @@ router.get('/', function (req, res, next) {
                         }
                 }],
                 function(err, db, result) {
+                        db.end();
                         if(err){
                                 console.log(err);
-                                res.send(err);
+                                res.send(null);
                         }
                         else {
                                 console.log(result);
-                                res.send(result);
+                                if(id > 0)
+                                        res.send(result);
+                                else
+                                        res.send(null);
                         }
                 });
                      
 
-        //console.log('aa');
-        //id = memberDB.login(req.query.id, req.query.pw);
-        //console.log('id : ' + id);
-        if(id > 0) {
-                console.log('로그인 성공');
-        } else {
-                console.log('로그인 실패');
-        }
-        */
-
+       /* 
+        console.log(req.query.id);
         if (req.query.id == "pmon2648") {
+                console.log("Success");
                 res.send('success');
         }
         else {
                 res.send('fail')
-        }
+        }*/
 });
 
 module.exports = router;

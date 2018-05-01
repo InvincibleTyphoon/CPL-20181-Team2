@@ -70,14 +70,17 @@ export default {
       console.log(this.dataID, this.dataPW);
 
       // get 경로에 테스트할 서버 주소를 입력해야함.
-      this.$http.get('https://kinetic-hydra-202310.appspot.com:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
+      this.$http.get('http://127.0.0.1:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
       .then((response) => {
         console.log(response);
-        if (response.data == 'fail') {
+        if (response.data == null) {
           this.notify(this.$ons.notification, '로그인 정보가 알맞지 않습니다.');
         }
         else {
-          this.$emit('push-page', MainPage);
+
+            console.log(response.data);
+            this.$emit('push-page', MainPage);
+            MainPage.patientInfo = response.data;
         }
       });
 
