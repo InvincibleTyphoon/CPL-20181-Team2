@@ -70,7 +70,7 @@ export default {
       console.log(this.dataID, this.dataPW);
 
       // get 경로에 테스트할 서버 주소를 입력해야함.
-      this.$http.get('http://kinetic-hydra-202310.appspot.com:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
+      this.$http.get('https://kinetic-hydra-202310.appspot.com:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
       .then((response) => {
         console.log(response);
         if (response.data == 'fail') {
