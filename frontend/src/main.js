@@ -4,6 +4,7 @@
 import 'font-awesome/css/font-awesome.css'
 import 'onsenui/css/onsenui-core.css'
 import 'onsenui/css/onsen-css-components.css'
+import 'onsenui/css/ionicons/css/ionicons.css'
 
 import Vue from 'vue'
 import $ons from 'vue-onsenui/esm'

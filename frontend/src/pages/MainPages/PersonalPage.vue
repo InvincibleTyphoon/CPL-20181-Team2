@@ -1,8 +1,11 @@
 <template id="PersonalPage">
   <v-ons-page>
-      <p style="text-align:center">
-          hello Personal Page
-      </p>
+
+      <v-ons-card>
+        <div class="title">
+          안녕하세요 {{personName}}님!
+        </div>
+      </v-ons-card>
   </v-ons-page>
 </template>
 
@@ -11,6 +14,7 @@ export default {
   name: 'PersonalPage',
   data () {
     return {
+      personName: '곽대훈',
     }
   },
   methods: {

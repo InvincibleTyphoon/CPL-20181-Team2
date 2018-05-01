@@ -40,9 +40,6 @@
         <v-ons-button class="someButton">Sign up</v-ons-button>
       </v-ons-col>
     </v-ons-row>
-    <v-ons-row>
-      <v-ons-button modifier="large" @click="notify($ons.notification, '이건가?')">Push Alarm Test</v-ons-button>
-    </v-ons-row>
     <!-- login session end -->
 
 

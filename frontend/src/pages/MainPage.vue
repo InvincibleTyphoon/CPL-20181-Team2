@@ -34,22 +34,28 @@ export default {
       activeIndex: 2,
       tabs: [
         {
+          icon: 'ion-ios-bell',
           label: '알람',
+          badge: 7,
           page: AlarmPage,
         },
         {
+          icon: 'ion-calendar',
           label: '예약',
           page: ReservPage,
         },
         {
+          icon: 'ion-android-person',
           label: '개인',
           page: PersonalPage,
         },
         {
+          icon: 'ion-chatbubble-working',
           label: '상담',
           page: CouncelPage,
         },
         {
+          icon: 'ion-gear-a',
           label: '설정',
           page: SettingPage,
         }
