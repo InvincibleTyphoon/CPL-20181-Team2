@@ -10,11 +10,13 @@
 </template>
 
 <script>
+import MainPage from '../MainPage'
+
 export default {
   name: 'PersonalPage',
   data () {
     return {
-      personName: '곽대훈',
+      personName: MainPage.patientInfo.name,
     }
   },
   methods: {

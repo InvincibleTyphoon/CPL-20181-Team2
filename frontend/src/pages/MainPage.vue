@@ -32,6 +32,7 @@ export default {
     return {
       msg: 'Hoscare',
       activeIndex: 2,
+      patientInfo: null,
       tabs: [
         {
           icon: 'ion-ios-bell',
@@ -64,6 +65,7 @@ export default {
   },
 
   methods: {
+    
   },
 
   components: {

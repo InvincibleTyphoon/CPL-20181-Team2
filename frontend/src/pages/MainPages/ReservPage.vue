@@ -5,8 +5,8 @@
       </p>
 
       <v-ons-fab
-      position="bottom right"
-      :visible="fabVisible"
+        position="bottom right"
+        :visible="fabVisible"
       >
         <v-ons-icon icon="ion-android-calendar"></v-ons-icon>
       </v-ons-fab>

@@ -3,6 +3,19 @@
       <p style="text-align:center">
           hello alarm
       </p>
+
+      <v-ons-card>
+      </v-ons-card>
+      <v-ons-card>
+      </v-ons-card>
+      <v-ons-card>
+      </v-ons-card>
+      <v-ons-card>
+      </v-ons-card>
+      <v-ons-card>
+      </v-ons-card>
+      <v-ons-card>
+      </v-ons-card>
   </v-ons-page>
 </template>
 
