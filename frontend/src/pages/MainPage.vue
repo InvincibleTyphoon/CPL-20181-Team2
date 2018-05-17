@@ -37,7 +37,7 @@ export default {
         {
           icon: 'ion-ios-bell',
           label: '알람',
-          badge: 7,
+          badge: AlarmPage.methods.getNumCard(),
           page: AlarmPage,
         },
         {
