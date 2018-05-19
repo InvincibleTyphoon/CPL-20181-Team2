@@ -5,13 +5,12 @@ var async = require('async');
 var mysql = require('mysql');
 var _ = require('underscore');
 const dbInfo = {
-        host: 'localhost',
+        host: '35.229.136.4',
         user: 'root',
-        password: 'westCircle1!',
+        password: 'hoscare',
         database: 'emr_data'
 };
 
-/*
 function connectDB() {
         var db = mysql.createConnection(dbInfo);
         db.connect(function(err) {
@@ -24,12 +23,10 @@ function connectDB() {
 
         return db;
 }
-*/
 
 router.get('/', function (req, res, next) {
         var id = -1;
 
-        /*
         async.waterfall([
                 function(callback) {
                         var err = null;
@@ -88,21 +85,10 @@ router.get('/', function (req, res, next) {
                 });
                      
 
-        //console.log('aa');
-        //id = memberDB.login(req.query.id, req.query.pw);
-        //console.log('id : ' + id);
         if(id > 0) {
                 console.log('로그인 성공');
         } else {
                 console.log('로그인 실패');
-        }
-        */
-
-        if (req.query.id == "pmon2648") {
-                res.send('success');
-        }
-        else {
-                res.send('fail')
         }
 });
 
