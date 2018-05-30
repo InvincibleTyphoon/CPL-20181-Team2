@@ -12,6 +12,7 @@
               style="font-size: 10px; text-align:right; margin:6px; margin-top:14px"
             >
               {{ item.cardDate }}
+              {{ item.cardTime }}
             </div>
         </v-ons-row>
         <v-ons-row>
@@ -34,45 +35,91 @@
 </template>
 
 <script>
+import MainPage from '../MainPage'
+
 export default {
   name: 'AlarmPage',
   data () {
     return {
       cardList: [
         {
-          type: 'prescription',
-          title: "복약",
-          cardDate: "05-17 12:30",
-          text: "약을 복용 하셨습니까?",
+          type: '',
+          title: "",
+          cardDate: "",
+          cardTime: "",
+          text: "",
         },
         {
-          type: 'prescription',
-          title: "복약",
-          cardDate: "05-17 18:00",
-          text: "약을 복용 하셨습니까?",
+          type: '',
+          title: "",
+          cardDate: "",
+          cardTime: "",
+          text: "",
         },
         {
-          type: 'reservation',
-          title: "예약",
-          cardDate: "05-17 20:00",
-          text: "내일 경북대학교 병원에서 외과 진료예약이 있습니다.",
+          type: '',
+          title: "",
+          cardDate: "",
+          cardTime: "",
+          text: "",
         },
         {
-          type: 'prescription',
-          title: "복약안내",
-          cardDate: "05-17 7:00",
-          text: "약을 복용 하셨습니까?",
+          type: '',
+          title: "",
+          cardDate: "",
+          cardTime: "",
+          text: "",
         },
         {
-          type: 'prescription',
-          title: "복약안내",
-          cardDate: "05-17 18:00",
-          text: "약을 복용 하셨습니까?",
+          type: '',
+          title: "",
+          cardDate: "",
+          cardTime: "",
+          text: "",
         },
       ],
       numCard: 5,
+      reservList: [],
+      medicineList: [],
     };
   },
+
+  beforeCreate() {
+        this.$http.get('http://localhost:3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
+        this.reservList = response.data[0];
+        this.medicineList = response.data[1];
+
+        var reservCnt = this.reservList.length;
+        var medicineCnt = this.medicineList.length;
+
+        var i = 0;
+
+        this.cardList.splice(0, this.cardList.length);
+        for(i = 0; i < reservCnt; i++) {
+            this.cardList.push( {
+                type: 'reservation',
+                title: "예약",
+                cardDate: this.reservList[i]['resDate'],
+                cardTime: this.reservList[i]['resTime'],
+                text: "오늘 " + this.reservList[i]['name'] + "에서 " + this.reservList[i]['office'] + " 진료 예약이 있습니다."
+            });
+        }
+
+        for(i = 0; i < medicineCnt; i++) {
+            this.cardList.push( {
+                type: 'medicine',
+                title: "복약",
+                cardDate: this.medicineList[i]['startDate'] + " ~ ",
+                cardTime: this.medicineList[i]['endDate'],
+                text: this.medicineList[i]['name'] + "을 복용하셨습니까?"
+            });
+        }
+
+    });
+
+
+  },
+
   methods: {
     getNumCard() {
       return 5;

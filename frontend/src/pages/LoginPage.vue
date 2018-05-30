@@ -37,7 +37,7 @@
         <v-ons-button @click="loginCheck()" class="someButton">Log in</v-ons-button>
       </v-ons-col>
       <v-ons-col>
-        <v-ons-button class="someButton">Sign up</v-ons-button>
+        <v-ons-button @click="signUp()" class="someButton">Sign up</v-ons-button>
       </v-ons-col>
     </v-ons-row>
     <!-- login session end -->
@@ -48,6 +48,7 @@
 
 <script>
 import MainPage from './MainPage.vue'
+import SignUpPage from './SignUpPage.vue'
 
 export default {
   name: 'login',
@@ -85,6 +86,7 @@ export default {
             console.log(response.data);
             this.$emit('push-page', MainPage);
             MainPage.patientInfo = response.data;
+            MainPage.updateAll();
         }
       });
 
@@ -93,8 +95,13 @@ export default {
       //this.$emit('push-page', MainPage);
     },
 
+    signUp() {
+    this.$emit('push-page', SignUpPage);
 
+
+    },
   }
+
 }
 </script>
 
