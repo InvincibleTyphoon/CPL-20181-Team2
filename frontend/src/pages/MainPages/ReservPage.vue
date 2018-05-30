@@ -12,6 +12,7 @@
                     style="font-size: 10px; text-align:right; margin:6px; margin-top:14px"
                 >
                     {{ item.cardDate }}
+                    {{ item.cardTime }}
                 </div>
             </v-ons-row>
             <v-ons-row>
@@ -34,40 +35,100 @@
         position="bottom right"
         :visible="fabVisible"
       >
-        <v-ons-icon icon="ion-android-calendar"></v-ons-icon>
+        <v-ons-button @click="initReserv()">새로고침</v-ons-button>
       </v-ons-fab>
   </v-ons-page>
 </template>
 
 <script>
+import MainPage from '../MainPage' 
+
 export default {
   name: 'ReservPage',
   data () {
     return {
       cardList: [
         {
-            type: 'reservation',
-            title: "예약",
-            cardDate: "05-18 10:00",
-            hospital: "경북대학교 병원",
-            office: "외과",
+            type: '',
+            title: "",
+            cardDate: "",
+            cardTime: "",
+            hospital: "",
+            office: "",
         },
         {
-            type: 'reservation',
-            title: "예약",
-            cardDate: "05-19 15:00",
-            hospital: "경북대학교 병원",
-            office: "정형외과",
+            type: '',
+            title: "",
+            cardDate: "",
+            cardTime: "",
+            hospital: "",
+            office: "",
         },
+        {
+             type: '',
+             title: "",
+             cardDate: "",
+             cardTime: "",
+             hospital: "",
+             office: "",
+         },
+         {
+             type: '',
+             title: "",
+             cardDate: "",
+             cardTime: "",
+             hospital: "",
+             office: "",
+         },
+         {
+             type: '',
+             title: "",
+             cardDate: "",
+             cardTime: "",
+             hospital: "",
+             office: "",
+         },
+
       ],
-      numCard: 2,
+      numCard: 5,
       fabVisible: true,
+      reservList: [],
+      hosList: [],
+      id: '',
+
+
+    
     }
+  },
+  beforeCreate() {
+
+    this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) => {
+    this.reservList = response.data[0];
+    this.hosList = response.data[1];
+
+    var cnt = this.reservList.length;
+    var i = 0;
+
+    this.cardList.splice(0, this.cardList.length);
+    for(i = 0; i < cnt; i++) {
+        this.cardList.push( {
+        type: 'reservation',
+        title: "예약",
+        cardDate: this.reservList[i]['resDate'],
+        cardTime: this.reservList[i]['resTime'],
+        hospital: this.hosList[i]['name'],
+        office: this.hosList[i]['office']
+        });
+    }
+});
+
   },
   methods: {
     getNumCard() {
-        return 2;
+        return 5;
     },
+
+
   }
 
 };

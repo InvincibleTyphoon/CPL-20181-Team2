@@ -82,6 +82,7 @@ export default {
             console.log(response.data);
             this.$emit('push-page', MainPage);
             MainPage.patientInfo = response.data;
+            MainPage.updateAll();
         }
       });
 
