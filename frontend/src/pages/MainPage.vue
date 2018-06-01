@@ -35,15 +35,15 @@ export default {
       patientInfo: null,
       tabs: [
         {
+          icon: 'ion-calendar',
+          label: '예약',
+          page: ReservPage,
+        },
+        {
           icon: 'ion-ios-bell',
           label: '알람',
           badge: AlarmPage.methods.getNumCard(),
           page: AlarmPage,
-        },
-        {
-          icon: 'ion-calendar',
-          label: '예약',
-          page: ReservPage,
         },
         {
           icon: 'ion-android-person',

@@ -84,7 +84,7 @@ export default {
     };
   },
 
-  beforeCreate() {
+  created() {
         this.$http.get('http://localhost:3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
         this.reservList = response.data[0];
         this.medicineList = response.data[1];
