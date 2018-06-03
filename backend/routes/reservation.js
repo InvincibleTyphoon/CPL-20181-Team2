@@ -31,27 +31,30 @@ router.get('/', function (req, res, next) {
         console.log("enter");
         async.waterfall([
                 function(call_back) {
-                        var err = null;
+                        var e = null;
                         
 
                         var db = connectDB();
                         // parentID를 이용하여 해당하는 예약정보를 받아온다.
 
-                        var sql = "SELECT id, patientID, hospitalID, DATE_FORMAT(resDate, '%Y-%m-%d') as resDate, resTime FROM reservation WHERE patientID = ? ";
+                        var sql = "SELECT id, patientID, hospitalID, DATE_FORMAT(resDate, '%Y-%m-%d') as resDate, resTime FROM reservation WHERE patientID = ? and resDate > now()";
                         var params = [req.query.id];
                         db.query(sql, params, function(err, rows, fields) {
                                 if(err) {
                                         console.log('Error while performing query.', err);
-                                        err = 'DB ERROR';
-                                        call_back('db', db, 'db');
+                                        e = 'DB ERROR';
+                                        call_back('db', null, null, db);
                                 }
                                 else {
                                         console.log("DB Searched");
                                         console.log(rows);
+
+
                                         call_back(null, rows, db);
 
                                 }
                         });
+                
                 }, function(resTable, db, call_back) {
                         var cnt = resTable.length;
                         var i = 0;
@@ -64,7 +67,7 @@ router.get('/', function (req, res, next) {
                                 db.query(sql, params, function(err, rows, fields) {
                                                 if(err) {
                                                         console.log('Error while performing query.', err);
-                                                        throw err;
+                                                        call_back('db', null, null, db);
                                                 }
                                                 else {
                                                         console.log("DB searched - hos");
