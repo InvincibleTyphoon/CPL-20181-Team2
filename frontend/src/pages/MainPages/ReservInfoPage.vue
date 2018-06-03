@@ -1,7 +1,7 @@
 <!-- push test-->
-<template id="ReservInfoPage">
-  <v-ons-page
-  @update="update()">
+<template id="ReservInfoPage"
+v-on:updateList="update()">
+  <v-ons-page>
   <v-ons-card v-for="item in cardList">
     <v-ons-row>
         <v-ons-col width="70%">
@@ -48,12 +48,31 @@
 <script>
 import MainPage from '../MainPage' 
 import ReservSubmitPage from './ReservSubmitPage'
-
 export default {
   name: 'ReservInfoPage',
   data () {
     return {
       cardList: [
+      {
+            type: '',
+            title: "",
+            cardDate: "",
+            cardTime: "",
+            hospital: "",
+            office: "",
+            id: "",
+            hosID: "",
+        },
+        {
+            type: '',
+            title: "",
+            cardDate: "",
+            cardTime: "",
+            hospital: "",
+            office: "",
+            id: "",
+            hosID: "",
+        },
         {
             type: '',
             title: "",
@@ -75,46 +94,25 @@ export default {
             hosID: "",
         },
         {
-             type: '',
-             title: "",
-             cardDate: "",
-             cardTime: "",
-             hospital: "",
-             office: "",
-             id: "",
-             hosID: "",
-         },
-         {
-             type: '',
-             title: "",
-             cardDate: "",
-             cardTime: "",
-             hospital: "",
-             office: "",
-             id: "",
-             hosID: "",
-         },
-         {
-             type: '',
-             title: "",
-             cardDate: "",
-             cardTime: "",
-             hospital: "",
-             office: "",
-             id: "",
-             hosID: "",
-         },
-
-      ],
+            type: '',
+            title: "",
+            cardDate: "",
+            cardTime: "",
+            hospital: "",
+            office: "",
+            id: "",
+            hosID: "",
+        },
+    ],
       numCard: 5,
       fabVisible: true,
       reservList: [],
       hosList: [],
       id: '',
-    
+      isUpdate: false,    
     }
   },
-    created() {
+    beforeCreate() {
         this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) => {
         this.reservList = response.data[0];
         this.hosList = response.data[1];
@@ -131,7 +129,6 @@ export default {
             office: this.hosList[i]['office'],
             id: this.reservList[i]['id'],
             hosID: this.hosList[i]['id']
-
             });
         }
     });
@@ -141,16 +138,13 @@ export default {
     getNumCard() {
         return 5;
     },
-
     pushSubmitPage() {
         this.$emit('push-page', ReservSubmitPage);
     },
     update() {    
         this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
-
         this.reservList.splice(0, this.reservList.length);
         this.hosList.splice(0, this.hosList.length);
-
         this.reservList = response.data[0];
         this.hosList = response.data[1];
         var cnt = this.reservList.length;
@@ -168,24 +162,17 @@ export default {
         }
     });
   },
-
   cancel(resID, idx) {
-
     this.$http.get('http://localhost:3000/api/reserv-cancel?id=' + resID).then((response) => {
         this.$ons.notification.alert("취소 완료");
-        cardList.splice(idx, 1);
+        this.cardList.splice(idx, 1);
         this.reservList.splice(idx, 1);
         this.hosList.splice(idx, 1);
     });
-
   }
-
-
   },
-
   components: {
     ReservSubmitPage,
  }
-
 };
 </script>

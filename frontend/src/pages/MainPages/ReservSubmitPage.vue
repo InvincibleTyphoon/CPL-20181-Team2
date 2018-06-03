@@ -176,7 +176,7 @@ export default {
 
         submmiting() {
           console.log('clicked');
-          var hosID = this.chosenHospital + this.chosenDepartment;
+            var hosID = this.chosenHospital + this.chosenDepartment;
 
             if (this.chosenHospital === '') {
                 this.$ons.notification.alert('Choose Hospital');
@@ -197,9 +197,8 @@ export default {
 
                 this.$http.get('http://localhost:3000/api/reserv-submit?patientID=' + MainPage.patientInfo['id'] + '&hospitalID=' + hosID + '&symptom=' + this.symptom + '&resDate=' + this.resDate + '&resTime=' + this.resTime).then((response) => {
                     if(response.data == "success") {
-                        this.$ons.notification.alert('예약이 완료되었습니다.');
-                        this.$emit('pop-page');
-                        this.$emit('update');
+                        this.$ons.notification.alert("예약이 완료되었습니다.");
+                        this.$emit('submit');
                     }
                     else {
                         this.$ons.notification.alert('에러');

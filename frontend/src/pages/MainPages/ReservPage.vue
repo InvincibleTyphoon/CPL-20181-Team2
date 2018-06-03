@@ -8,6 +8,7 @@
           :page-stack="pageStack"
           @push-page="pageStack.push($event)"
           @pop-page="pageStack.pop()"
+          @submit="updateInfo()"
           @toggleMenu="menuIsOpen = !menuIsOpen"
         ></v-ons-navigator>
       </v-ons-splitter-content>
@@ -27,7 +28,17 @@ export default {
       patientID: '',
     }
   },
+  
+  methods: {
+        
+        updateInfo() {
+                this.pageStack.push(ReservInfoPage);
+                this.$ons.notification.alert(this.pageStack.length);
+                this.pageStack.splice(0, 2);
+        },
 
+  
+  },
   components: {
     ReservInfoPage,
     ReservSubmitPage,
