@@ -13,6 +13,8 @@ var reservRouter = require('./routes/reservation');
 var alarmRouter = require('./routes/alarm');
 var reservSubmitRouter = require('./routes/reservSubmit');
 var reservCancelRouter = require('./routes/reserv-cancel');
+var messengerRouter = require('./routes/messenger');
+
 var app = express();
 
 // view engine setup
@@ -34,6 +36,8 @@ app.use('/api/reservation', reservRouter);
 app.use('/api/alarm', alarmRouter);
 app.use('/api/reserv-submit', reservSubmitRouter);
 app.use('/api/reserv-cancel', reservCancelRouter);
+app.use('/api/messenger', messengerRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -49,6 +53,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+
+
 
 
 /*
