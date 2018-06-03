@@ -44,14 +44,13 @@
 
     </v-ons-list>
 
-// pop하는 방법 몰라서 back-button 사용..
     <!-- buttons -->
     <v-ons-row>
       <v-ons-col>
-        <v-ons-back-button @click="signUpCheck()" class="someButton">확인</v-ons-back-button>
+        <v-ons-button @click="signUpCheck()" class="someButton">확인</v-ons-button>
       </v-ons-col>
       <v-ons-col>
-        <v-ons-back-button class="someButton">취소</v-ons-back-button>
+        <v-ons-button @click="cancel()" class="someButton">취소</v-ons-button>
       </v-ons-col>
     </v-ons-row>
     <!-- login session end -->
@@ -90,6 +89,7 @@ export default {
       .then((response) => {
         if (response.data == 'success') {
           this.notify(this.$ons.notification, '회원가입 완료.');
+          this.$emit('pop-page');
         }
         else if (response.data == 'dup') {
             this.notify(this.$ons.notification, '중복된 ID가 있습니다.');
@@ -98,7 +98,7 @@ export default {
             this.notify(this.$ons.notification, '비밀번호가 일치하지 않습니다.');
         }
         else if (response.data == 'noInput') {
-            this.notify(this.$ons.notificaion, '입력하지 않은 것이 있습니다.');
+            this.notify(this.$ons.notification, '입력하지 않은 것이 있습니다.');
         }
         else {
             this.notify(this.$ons.notification, 'Error..');
@@ -106,6 +106,10 @@ export default {
         
       });
 
+    },
+    
+    cancel() {
+        this.$emit('pop-page');
     },
 
 

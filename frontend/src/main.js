@@ -15,7 +15,6 @@ import axios from 'axios'
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
-Vue.prototype.$EventBus = new Vue();    //  비 부모자식간 컴포넌트 통신을 위함
 
 Vue.use($ons);
 Object.values(VOns).forEach(comp => Vue.component(comp.name, comp));

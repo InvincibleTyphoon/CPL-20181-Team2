@@ -71,11 +71,7 @@ export default {
       console.log(this.dataID, this.dataPW);
 
       // get 경로에 테스트할 서버 주소를 입력해야함.
-<<<<<<< HEAD
       this.$http.get('http://localhost:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
-=======
-      this.$http.get('http://127.0.0.1:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
->>>>>>> 1180616d6c56474069a80a22687e80b80ee73502
       .then((response) => {
         console.log(response);
         if (response.data == null) {

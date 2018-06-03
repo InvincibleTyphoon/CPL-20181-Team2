@@ -12,7 +12,7 @@
         <v-ons-navigator swipeable
           :page-stack="pageStack"
           @push-page="pageStack.push($event)"
-          @pop-page="pageStack.splice(1, pageStack.length - 1)"
+          @pop-page="pageStack.pop()"
           @toggleMenu="menuIsOpen = !menuIsOpen"
         ></v-ons-navigator>
         <!--<main-page @toggleMenu="menuIsOpen = !menuIsOpen"></main-page>-->
@@ -24,7 +24,7 @@
 <script>
 import LoginPage from './pages/LoginPage'
 import MenuPage from './pages/MenuPage'
-import SignUpPage from './pages/SignUpPage'
+//import SignUpPage from './pages/SignUpPage'
 
 export default {
   name: 'app',
