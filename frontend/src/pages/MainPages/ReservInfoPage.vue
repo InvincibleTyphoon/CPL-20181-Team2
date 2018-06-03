@@ -2,7 +2,8 @@
 <template id="ReservInfoPage"
 v-on:updateList="update()">
   <v-ons-page>
-  <v-ons-card v-for="item in cardList">
+  <v-ons-card v-for="item in cardList"
+  @update='update()'>
     <v-ons-row>
         <v-ons-col width="70%">
             <v-ons-row>
@@ -41,6 +42,9 @@ v-on:updateList="update()">
     >
         <v-ons-button @click="pushSubmitPage()">예약하기</v-ons-button>
     </v-ons-fab>
+
+    <v-ons-popover 
+
 
   </v-ons-page>
 </template>
@@ -142,6 +146,8 @@ export default {
         this.$emit('push-page', ReservSubmitPage);
     },
     update() {    
+        this.$ons.notification.alert("??");
+
         this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
         this.reservList.splice(0, this.reservList.length);
         this.hosList.splice(0, this.hosList.length);

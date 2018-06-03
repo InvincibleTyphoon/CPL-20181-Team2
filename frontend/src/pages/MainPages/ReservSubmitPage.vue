@@ -199,6 +199,7 @@ export default {
                     if(response.data == "success") {
                         this.$ons.notification.alert("예약이 완료되었습니다.");
                         this.$emit('submit');
+                    
                     }
                     else {
                         this.$ons.notification.alert('에러');

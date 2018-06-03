@@ -10,6 +10,8 @@
     </v-ons-toolbar>
 
     <v-ons-tabbar swipeable position="auto"
+    @updateAlarmBadge="tabs[1].badge = $event"
+    @updateReservBadge="tabs[0].badge = $event"  
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
@@ -37,12 +39,13 @@ export default {
         {
           icon: 'ion-calendar',
           label: '예약',
+          badge: '',
           page: ReservPage,
         },
         {
           icon: 'ion-ios-bell',
           label: '알람',
-          badge: AlarmPage.methods.getNumCard(),
+          badge: '',
           page: AlarmPage,
         },
         {

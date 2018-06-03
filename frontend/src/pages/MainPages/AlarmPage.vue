@@ -78,7 +78,7 @@ export default {
           text: "",
         },
       ],
-      numCard: 5,
+      numCard: '',
       reservList: [],
       medicineList: [],
     };
@@ -114,7 +114,9 @@ export default {
                 text: this.medicineList[i]['name'] + "을 복용하셨습니까?"
             });
         }
-
+        
+        this.numCard = this.cardList.length;
+        this.$emit('updateAlarmBadge', this.cardList.length);
     });
 
 
@@ -122,7 +124,7 @@ export default {
 
   methods: {
     getNumCard() {
-      return 5;
+      return this.numCard;
     },
   }
 };
