@@ -74,7 +74,7 @@ export default {
       this.$http.get('http://localhost:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
       .then((response) => {
         console.log(response);
-        if (response.data == null) {
+        if (response.data == "") {
           this.notify(this.$ons.notification, '로그인 정보가 알맞지 않습니다.');
         }
         else {

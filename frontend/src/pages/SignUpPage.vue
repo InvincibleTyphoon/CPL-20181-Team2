@@ -1,5 +1,11 @@
 <template id="LoginPage">
   <v-ons-page>
+    <v-ons-toolbar class="home-toolbar">
+      <div class="left">
+        <v-ons-back-button></v-ons-back-button>
+      </div>
+      <div class="center">{{ msg }}</div>
+    </v-ons-toolbar>
 
     <div class="header">
       <img src="../assets/logo.png" alt="vue-logo">
