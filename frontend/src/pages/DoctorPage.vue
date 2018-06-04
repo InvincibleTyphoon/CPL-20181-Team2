@@ -30,6 +30,7 @@ export default {
       msg: 'Hoscare',
       activeIndex: 1,
       doctorInfo: null,
+      hosInfo: null,
       tabs: [
         {
           icon: 'ion-calendar',

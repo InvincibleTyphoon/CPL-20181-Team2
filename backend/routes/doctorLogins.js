@@ -72,8 +72,19 @@ router.get('/', function (req, res, next) {
                                 console.log('로그인 실패');
                                 callback('Error', callback);
                         }
+                },
+                function(db, member, callback) {
+                        var sql = 'SELECT * FROM hospital WHERE id = ' + member.hospitalID;
+                        db.query(sql, function(err, rows, fields) {
+                                if(err) {
+                                        console.log("Error while performing query.", err);
+                                        throw err;
+                                }
+                                var hos = _.clone(rows[0]);
+                                callback(null, db, member, hos);
+                        });
                 }],
-                function(err, db, result) {
+                function(err, db, result, hos) {
                         db.end();
                         if(err){
                                 console.log(err);
@@ -82,7 +93,7 @@ router.get('/', function (req, res, next) {
                         else {
                                 console.log(result);
                                 if(id > 0)
-                                        res.send(result);
+                                        res.send([result, hos]);
                                 else
                                         res.send(null);
                         }

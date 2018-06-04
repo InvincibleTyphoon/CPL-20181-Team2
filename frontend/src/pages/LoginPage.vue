@@ -107,8 +107,8 @@ export default {
             else {
                 console.log(response.data);
                 this.$emit('push-page', DoctorPage);
-                DoctorPage.doctorInfo = response.data;
-
+                DoctorPage.doctorInfo = response.data[0];
+                DoctorPage.hosInfo = response.data[1];
             }
         });
     },
