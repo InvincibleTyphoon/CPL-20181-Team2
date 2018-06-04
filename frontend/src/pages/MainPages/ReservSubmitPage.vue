@@ -84,12 +84,20 @@
     
     </v-ons-list>
 
-      <v-ons-button
-      @click="submmiting()">Submit
-      </v-ons-button>
-      <v-ons-button
-      @click="cancel()">취소
-      </v-ons-button>
+    <v-ons-row>
+        <v-ons-col>
+            <v-ons-button
+            class="someButton"
+            @click="submmiting()">예약
+            </v-ons-button>
+        </v-ons-col>
+        <v-ons-col>
+            <v-ons-button
+            class="someButton"
+            @click="cancel()">취소
+            </v-ons-button>
+        </v-ons-col>
+    </v-ons-row>
   </v-ons-page>
 </template>
 
@@ -235,7 +243,8 @@ select{
 }
 ons-button {
   margin-top: 10px;
-  margin-left: 40%;
+  margin-left: 3px;
+  margin-right: 3px;
   text-align: center;
   
 }

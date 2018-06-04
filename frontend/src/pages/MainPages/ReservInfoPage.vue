@@ -19,32 +19,39 @@ v-on:updateList="update()">
             </v-ons-row>
             <v-ons-row>
                 <div class="content" style="margin-top: 5px">
-                {{ item.hospital }}
-                <div class="content" style-="margin-top: 5px">
-                {{ item.office }}
-            </div>
-        </v-ons-row>
-    </v-ons-col>
+                    {{ item.hospital }}<br/>
+                    {{ item.office }}
+                </div>
+            </v-ons-row>
+        </v-ons-col>
 
-    <v-ons-col width="30%">
-        <div class="right">
-            <v-ons-button modifire="outline large" style="margin:3px"> 자세히 </v-ons-button>
-        </div>
-        <div class="right">
-            <v-ons-button @click="cancel(item.id, cardList.indexOf(item))" modifier="outline large" style="margin:3px"> 취소 </v-ons-button>
-        </div>
-    </v-ons-col>
+        <v-ons-col width="30%">
+            <!-- 필요 없다해서 주석처리
+            <div class="right">
+                <v-ons-button modifire="outline large" style="margin:3px"> 자세히 </v-ons-button>
+            </div>
+            -->
+            <div class="right">
+                <v-ons-button @click="cancel(item.id, cardList.indexOf(item))" 
+                modifier="outline large" 
+                style="margin-top:50%-4px; line-height:1.5em">
+                    예약<br/>취소
+                </v-ons-button>
+            </div>
+        </v-ons-col>
   </v-ons-card>  
 
     <v-ons-fab
      position="bottom right"
      :visible="fabVisible"
+     @click="pushSubmitPage()"
     >
-        <v-ons-button @click="pushSubmitPage()">예약하기</v-ons-button>
+        <v-ons-icon icon="calendar"></v-ons-icon>
     </v-ons-fab>
 
+    <!-- 서원이 이거 뭐임?
     <v-ons-popover 
-
+    -->
 
   </v-ons-page>
 </template>
