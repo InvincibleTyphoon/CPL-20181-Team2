@@ -53,13 +53,42 @@ export default {
       numCard: '',
       reservList: [],
       medicineList: [],
+      sampleList: [
+        {
+          type: 'medicine',
+          title: "복약",
+          cardDate: "2018.06.05.",
+          cardTime: "08:00",
+          text: "아침 약을 복용하셨습니까",
+          id: "",
+        },
+        {
+          type: 'medicine',
+          title: "복약",
+          cardDate: "2018.06.05.",
+          cardTime: "13:00",
+          text: "점심 약을 복용하셨습니까",
+          id: "",
+        },
+        {
+          type: 'medicine',
+          title: "복약",
+          cardDate: "2018.06.05.",
+          cardTime: "19:00",
+          text: "저녁 약을 복용하셨습니까",
+          id: "",
+        }
+      ],
       count : 0,
     };
   },
 
    mounted () {
     setTimeout(() => {
+      this.cardList.push(this.sampleList[this.count]);
       this.count++;
+      this.numCard++;
+      this.$emit('updateAlarmBadge', this.cardList.length);
       this.pushList();
     }, 1000)
   },
@@ -97,8 +126,8 @@ export default {
             });
         }
         
-        this.numCard = this.cardList.length;
-        this.$emit('updateAlarmBadge', this.cardList.length);
+        this.numCard += this.cardList.length;
+        this.$emit('updateAlarmBadge', this.numCard);
     });
 
 
@@ -114,8 +143,9 @@ export default {
                     this.$emit('updateAlarmBadge', this.cardList.length);
             });
     },
-       pushList() {
+    pushList() {
         //  testing code
+        /*
         this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
           var cnt = response.data[0].length;
           var i = 0;
@@ -129,7 +159,7 @@ export default {
               });
           }
         });
-
+        */
     //      this.$http.get('http://localhost:3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
     //     this.reservList = response.data[0];
     //     this.medicineList = response.data[1];
@@ -165,12 +195,17 @@ export default {
     //     this.numCard = this.cardList.length;
     //     this.$emit('updateAlarmBadge', this.cardList.length);
     // });
-    setTimeout(() => {
-       this.count++;
-        this.pushList();
-     }, 1000)
+      if (this.count < 3) {
+        setTimeout(() => {
+            this.cardList.push(this.sampleList[this.count]);
+            this.count++;
+            this.numCard++;
+            this.$emit('updateAlarmBadge', this.cardList.length);
+            this.pushList();
+        }, 4000)
+      }
     },
-    },
+  },
 }
 
 </script>

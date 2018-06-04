@@ -9,10 +9,15 @@
       <div class="center">{{ msg }}</div>
     </v-ons-toolbar>
 
-    <div class="header">
-      <img src="../assets/logo.png" alt="vue-logo">
-    </div>
-
+    <br/>
+    <v-ons-card>
+      <br/><br/>
+        <div class="header">
+          <img src="../assets/logo.png" alt="vue-logo">
+        </div>
+      <br/><br/>
+    </v-ons-card>
+    <br/>
 
     <!-- login session -->
     <v-ons-list-title>Login</v-ons-list-title>
@@ -37,10 +42,17 @@
         <v-ons-button @click="loginCheck()" class="someButton">Log in</v-ons-button>
       </v-ons-col>
       <v-ons-col>
-        <v-ons-button @click="doctorLogin()" class="someButton">Doctor Log in</v-ons-button>
-      </v-ons-col>
-      <v-ons-col>
         <v-ons-button @click="signUp()" class="someButton">Sign up</v-ons-button>
+      </v-ons-col>
+    </v-ons-row>
+
+    <v-ons-row>
+      <v-ons-col>
+        <v-ons-button @click="doctorLogin()"
+          modifier="outline"
+          style="margin-left:5%; margin-right:5%; width:90%">
+          Doctor Log in
+        </v-ons-button>
       </v-ons-col>
     </v-ons-row>
     <!-- login session end -->
