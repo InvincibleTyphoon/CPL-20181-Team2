@@ -1,6 +1,12 @@
 <!-- push test-->
 <template id="InquirePage">
   <v-ons-page>
+  <v-ons-card>
+  <v-ons-row>
+        <v-ons-col text-align="center"> {{ hosName + " " + officeName }} </v-ons-col>
+  </v-ons-row>
+  </v-ons-card>
+
   <v-ons-card v-for="item in cardList">
     <v-ons-row>
         <v-ons-col width="70%">
@@ -87,6 +93,8 @@ export default {
       numCard: 5,
       fabVisible: true,
       reservList: [],
+      hosName: DoctorPage.hosInfo.name,
+      officeName: DoctorPage.hosInfo.office,
     }
   },
     created() {
