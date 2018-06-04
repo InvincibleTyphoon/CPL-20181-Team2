@@ -37,6 +37,9 @@
         <v-ons-button @click="loginCheck()" class="someButton">Log in</v-ons-button>
       </v-ons-col>
       <v-ons-col>
+        <v-ons-button @click="doctorLogin()" class="someButton">Doctor Log in</v-ons-button>
+      </v-ons-col>
+      <v-ons-col>
         <v-ons-button @click="signUp()" class="someButton">Sign up</v-ons-button>
       </v-ons-col>
     </v-ons-row>
@@ -49,7 +52,7 @@
 <script>
 import MainPage from './MainPage.vue'
 import SignUpPage from './SignUpPage.vue'
-
+import DoctorPage from './DoctorPage.vue'
 export default {
   name: 'login',
   data () {
@@ -92,9 +95,22 @@ export default {
     },
 
     signUp() {
-    this.$emit('push-page', SignUpPage);
+            this.$emit('push-page', SignUpPage);
+    },
 
+    doctorLogin() {
+            this.$http.get('http://localhost:3000/api/doctorLogins?id=' + this.dataID + '&pw=' + this.dataPW)
+            .then((response) => {
+            if(response.data == "") {
+                this.notify(this.$ons.notification, '로그인 정보가 알맞지 않습니다.');
+            }
+            else {
+                console.log(response.data);
+                this.$emit('push-page', DoctorPage);
+                DoctorPage.doctorInfo = response.data;
 
+            }
+        });
     },
   }
 
