@@ -2,9 +2,10 @@
   <v-ons-page>
 
 <v-ons-list>
-      <v-ons-list-item v-for="item in cardList">
-              <v-ons-col>
-                <v-ons-row>
+      <v-ons-card v-for="item in cardList">
+            <v-ons-row>
+        <v-ons-col>
+              <v-ons-row>
                     <div class="title" style="font-size: 20px">
                       {{ item.title }}
                     </div>
@@ -14,20 +15,19 @@
                       {{ item.cardDate }}
                       {{ item.cardTime }}
                     </div>
-                </v-ons-row>
-                <v-ons-row>
-                  <div class="content" style="margin-top: 5px">
-                    {{ item.text }}
-                  </div>
-                </v-ons-row>
-              </v-ons-col>
+              </v-ons-row>
+             <div class="content" style="margin-top: 5px">
+               {{ item.text }}
+              </div>
+        </v-ons-col>
 
-              <v-ons-col width="30%">
-                <div class="right">
+        <v-ons-col width="30%">
+              <div class="right">
                   <v-ons-button @click="prescription(item.id, cardList.indexOf(item))" modifier="outline large" style="margin:3px"> 확인 </v-ons-button>
-                </div>
-              </v-ons-col>
-      </v-ons-list-item>
+              </div>
+        </v-ons-col>
+              
+      </v-ons-card>
     </v-ons-list>
 
   </v-ons-page>
