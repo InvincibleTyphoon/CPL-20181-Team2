@@ -14,7 +14,7 @@ var alarmRouter = require('./routes/alarm');
 var reservSubmitRouter = require('./routes/reservSubmit');
 var reservCancelRouter = require('./routes/reserv-cancel');
 var messengerRouter = require('./routes/messenger');
-
+var prescriptionRouter = require('./routes/prescription');
 var app = express();
 
 // view engine setup
@@ -37,7 +37,7 @@ app.use('/api/alarm', alarmRouter);
 app.use('/api/reserv-submit', reservSubmitRouter);
 app.use('/api/reserv-cancel', reservCancelRouter);
 app.use('/api/messenger', messengerRouter);
-
+app.use('/api/prescription', prescriptionRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

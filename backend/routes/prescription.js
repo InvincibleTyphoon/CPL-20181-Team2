@@ -37,27 +37,11 @@ router.get('/', function (req, res, next) {
                         var db = connectDB();
                         // parentID를 이용하여 현재 날짜에 해당하는 예약정보를 받아온다.
 
-                        var sql = "SELECT res.resTime, hos.name, hos.office, DATE_FORMAT(res.resDate,'%Y-%m-%d') as resDate FROM reservation as res, hospital as hos WHERE res.hospitalID = hos.id and res.patientID = ? and res.resDate = DATE(?)";
-                        var params = [req.query.id, new Date()];
-                        db.query(sql, params, function(err, rows, fields) {
-                                if(err) {
-                                        console.log('Error while performing query.', err);
-                                        err = 'DB ERROR';
-                                        call_back('db', db, 'db');
-                                }
-                                else {
-                                        console.log("DB Searched");
-                                        console.log(rows);
-                                        call_back(null, rows, db);
-
-                                }
-                        });
-                }, function(resTable, db, call_back) {
                         
                         var curDate = new Date();
-                        var sql =  "SELECT id, name, DATE_FORMAT(endDate, '%Y-%m-%d') as endDate, DATE_FORMAT(startDate, '%Y-%m-%d') as startDate FROM medicine WHERE patientId = ? and startDate <= ? and endDate > ?";
+                        var sql =  "UPDATE medicine SET lunch = 1 where id=?";
 
-                        var params = [req.query.id, curDate, curDate];
+                        var params = [req.query.id];
                         db.query(sql, params, function(err, rows, fields) {
                                 if(err) {
                                             console.log('Error while performing query.', err);
@@ -66,13 +50,13 @@ router.get('/', function (req, res, next) {
                                 else {
                                             console.log("DB searched - medicine");
                                             console.log(rows);
-                                            call_back(null, resTable, rows, db);
+                                            call_back(null, db);
                                 }
                         });
                         
 
                 }],
-                function(err, resTable, medicine, db) {
+                function(err, db) {
 
                         if(err ==  null) {
                                 if(db != null)
@@ -80,7 +64,7 @@ router.get('/', function (req, res, next) {
 
                                 console.log("!!");
                                 
-                                res.send([resTable, medicine]);
+                                res.send("success");
 
                                  
 

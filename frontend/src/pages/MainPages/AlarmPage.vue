@@ -24,8 +24,7 @@
 
       <v-ons-col width="30%">
         <div class="right">
-          <v-ons-button modifier="outline large" style="margin:3px"> 확인 </v-ons-button>
-          <v-ons-button modifier="outline large" style="margin:3px"> 취소 </v-ons-button>
+          <v-ons-button @click="prescription(item.id, cardList.indexOf(item))" modifier="outline large" style="margin:3px"> 확인 </v-ons-button>
         </div>
       </v-ons-col>
     </v-ons-row>
@@ -48,6 +47,7 @@ export default {
           cardDate: "",
           cardTime: "",
           text: "",
+          id: "",
         },
         {
           type: '',
@@ -55,6 +55,7 @@ export default {
           cardDate: "",
           cardTime: "",
           text: "",
+          id: "",
         },
         {
           type: '',
@@ -62,6 +63,7 @@ export default {
           cardDate: "",
           cardTime: "",
           text: "",
+          id: "",
         },
         {
           type: '',
@@ -69,6 +71,7 @@ export default {
           cardDate: "",
           cardTime: "",
           text: "",
+          id: "",
         },
         {
           type: '',
@@ -76,6 +79,7 @@ export default {
           cardDate: "",
           cardTime: "",
           text: "",
+          id: "",
         },
       ],
       numCard: '',
@@ -101,7 +105,8 @@ export default {
                 title: "예약",
                 cardDate: this.reservList[i]['resDate'],
                 cardTime: this.reservList[i]['resTime'],
-                text: "오늘 " + this.reservList[i]['name'] + "에서 " + this.reservList[i]['office'] + " 진료 예약이 있습니다."
+                text: "오늘 " + this.reservList[i]['name'] + "에서 " + this.reservList[i]['office'] + " 진료 예약이 있습니다.",
+                id: this.reservList[i]['id']
             });
         }
 
@@ -111,7 +116,8 @@ export default {
                 title: "복약",
                 cardDate: this.medicineList[i]['startDate'] + " ~ ",
                 cardTime: this.medicineList[i]['endDate'],
-                text: this.medicineList[i]['name'] + "을 복용하셨습니까?"
+                text: this.medicineList[i]['name'] + "을 복용하셨습니까?",
+                id: this.medicineList[i]['id']
             });
         }
         
@@ -126,8 +132,14 @@ export default {
     getNumCard() {
       return this.numCard;
     },
-  }
-};
+    prescription(medID, idx) {
+            this.$http.get('http://localhost:3000/api/prescription?id=?' + medID).then((response) => {
+                    this.cardList.splice(idx, 1);
+                    this.$emit('updateAlarmBadge', this.cardList.length);
+            });
+    },
+    },
+}
 
 </script>
 
