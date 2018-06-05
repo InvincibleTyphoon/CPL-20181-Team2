@@ -1,5 +1,6 @@
 <template id="CouncelPage">
   <v-ons-page>
+      <!--
       <v-ons-row>
         <div style="margin-left:auto">
           <v-ons-card style="background-color: #DDFFDD">
@@ -39,11 +40,17 @@
           </v-ons-card>
         </div>
       </v-ons-row>
+      -->
 
-      <v-ons-list style="height: 100%">
+      <v-ons-list id="vlist" style="height:auto; overflow:auto">
         <v-ons-row v-for="item in messageList" :key="item.message">
-          <div>
-            <v-ons-card>
+          <div v-if="item.type" style="margin-left:auto">
+            <v-ons-card style="background-color: #DDFFDD">
+              {{item.message}}
+            </v-ons-card>
+          </div>
+          <div v-else>
+            <v-ons-card style="background-color: #EEEEEE">
               {{item.message}}
             </v-ons-card>
           </div>
@@ -97,16 +104,22 @@ export default {
       });
       this.inputMessage = "";
       console.log(this.messageList);
+
+      var vlist = document.getElementById("vlist");
+      console.log(vlist, vlist.scrollHeight, vlist.scrollTop);
+      vlist.scrollTop = vlist.scrollHeight;
     }
-  },
+  },  
   mounted() {
     setTimeout(() => {
       this.messageList.push({
         type: false,
         message: "약 성분을 더 구체적으로 말씀드리면 좋으나, 지금 받고계신 처방에 대해서 보통의 종합 영양제를 복용하셨을 때 아무런 무리가 없습니다.",
       });
-      console.log(this.messageList)
-    }, 3000);
+      console.log(this.messageList);
+      var vlist = document.getElementById("vlist");
+      vlist.scrollTop = vlist.scrollHeight;
+    }, 15000);
   },
 };
 </script>

@@ -91,7 +91,7 @@ export default {
     signUpCheck () {
       console.log(this.dataID, this.dataPW);
       // 회원 정보를 입력한 것을 DB에 저장하기 위해 보냄!!
-      this.$http.get('http://localhost:3000/api/sign-up?id=' + this.dataID + '&pw=' + this.dataPW + '&rePw=' + this.dataPWRe + '&name=' + this.dataName + '&birthday=' + this.dataBirth + '&phone=' + this.dataPhone)
+      this.$http.get('http://' + this.$localIp + ':3000/api/sign-up?id=' + this.dataID + '&pw=' + this.dataPW + '&rePw=' + this.dataPWRe + '&name=' + this.dataName + '&birthday=' + this.dataBirth + '&phone=' + this.dataPhone)
       .then((response) => {
         if (response.data == 'success') {
           this.notify(this.$ons.notification, '회원가입 완료.');
