@@ -40,20 +40,29 @@
         </div>
       </v-ons-row>
 
-
+      <v-ons-list style="height: 100%">
+        <v-ons-row v-for="item in messageList" :key="item.message">
+          <div>
+            <v-ons-card>
+              {{item.message}}
+            </v-ons-card>
+          </div>
+        </v-ons-row>
+      </v-ons-list>
+      
       <v-ons-bottom-toolbar>
         <v-ons-row class="myBottom">
           <v-ons-col width="78%">
             <div class="left">
               <v-ons-input placeholder="Input your message"
-                v-model="message" width="50%">
+                v-model="inputMessage" width="50%">
               </v-ons-input>
             </div>
           </v-ons-col>
 
           <v-ons-col width="15%">
             <div class="right">
-              <v-ons-toolbar-button> <!--@click="$emit('toggleMenu')">-->
+              <v-ons-toolbar-button @click="sendMessage(inputMessage, true)"> <!--@click="$emit('toggleMenu')">-->
                 <v-ons-icon icon="ion-arrow-up-a"></v-ons-icon>
               </v-ons-toolbar-button>
             </div>
@@ -68,10 +77,37 @@ export default {
   name: 'CouncelPage',
   data () {
     return {
+      inputMessage: "",
+      messageList: [
+        /*
+        {
+          type: true, // true : me
+          message: "",
+        }
+        */
+      ],
+      constUpperTag: "",
     }
   },
   methods: {
-  }
+    sendMessage(msg, tp) {
+      this.messageList.push({
+        type: tp,
+        message: this.inputMessage,
+      });
+      this.inputMessage = "";
+      console.log(this.messageList);
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.messageList.push({
+        type: false,
+        message: "약 성분을 더 구체적으로 말씀드리면 좋으나, 지금 받고계신 처방에 대해서 보통의 종합 영양제를 복용하셨을 때 아무런 무리가 없습니다.",
+      });
+      console.log(this.messageList)
+    }, 3000);
+  },
 };
 </script>
 
