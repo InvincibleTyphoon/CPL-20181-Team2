@@ -124,7 +124,7 @@ export default {
     }
   },
     beforeCreate() {
-        this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) => {
+        this.$http.get('http://' + this.$localIp + ':3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) => {
         this.reservList = response.data[0];
         this.hosList = response.data[1];
         var cnt = this.reservList.length;
@@ -155,7 +155,7 @@ export default {
     update() {    
         this.$ons.notification.alert("??");
 
-        this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
+        this.$http.get('http://' + this.$localIp + ':3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
         this.reservList.splice(0, this.reservList.length);
         this.hosList.splice(0, this.hosList.length);
         this.reservList = response.data[0];
@@ -176,7 +176,7 @@ export default {
     });
   },
   cancel(resID, idx) {
-    this.$http.get('http://localhost:3000/api/reserv-cancel?id=' + resID).then((response) => {
+    this.$http.get('http://' + this.$localIp + ':3000/api/reserv-cancel?id=' + resID).then((response) => {
         this.$ons.notification.alert("취소 완료");
         this.cardList.splice(idx, 1);
         this.reservList.splice(idx, 1);

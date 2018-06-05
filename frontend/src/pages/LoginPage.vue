@@ -86,7 +86,7 @@ export default {
       console.log(this.dataID, this.dataPW);
 
       // get 경로에 테스트할 서버 주소를 입력해야함.
-      this.$http.get('http://localhost:3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
+      this.$http.get('http://' + this.$localIp + ':3000/api/logins?id=' + this.dataID + '&pw=' + this.dataPW)
       .then((response) => {
         console.log(response);
         if (response.data == "") {
@@ -111,7 +111,7 @@ export default {
     },
 
     doctorLogin() {
-            this.$http.get('http://localhost:3000/api/doctorLogins?id=' + this.dataID + '&pw=' + this.dataPW)
+            this.$http.get('http://' + this.$localIp + ':3000/api/doctorLogins?id=' + this.dataID + '&pw=' + this.dataPW)
             .then((response) => {
             if(response.data == "") {
                 this.notify(this.$ons.notification, '로그인 정보가 알맞지 않습니다.');
@@ -124,8 +124,10 @@ export default {
             }
         });
     },
-  }
-
+  },
+  mounted() {
+    console.log(this.$localIp);
+  },
 }
 </script>
 

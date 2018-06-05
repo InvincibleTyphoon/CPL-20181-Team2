@@ -203,7 +203,7 @@ export default {
                 return;
             } else {
 
-                this.$http.get('http://localhost:3000/api/reserv-submit?patientID=' + MainPage.patientInfo['id'] + '&hospitalID=' + hosID + '&symptom=' + this.symptom + '&resDate=' + this.resDate + '&resTime=' + this.resTime).then((response) => {
+                this.$http.get('http://' + this.$localIp + ':3000/api/reserv-submit?patientID=' + MainPage.patientInfo['id'] + '&hospitalID=' + hosID + '&symptom=' + this.symptom + '&resDate=' + this.resDate + '&resTime=' + this.resTime).then((response) => {
                     if(response.data == "success") {
                         this.$ons.notification.alert("예약이 완료되었습니다.");
                         this.$emit('submit');
