@@ -15,7 +15,7 @@ import axios from 'axios'
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
-Vue.prototype.$localIp = "localhost";
+Vue.prototype.$localIp = "192.168.43.28";
 
 Vue.use($ons);
 Object.values(VOns).forEach(comp => Vue.component(comp.name, comp));

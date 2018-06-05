@@ -94,7 +94,7 @@ export default {
   },
 
   created() {
-        this.$http.get('http://localhost:3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
+        this.$http.get('http://' + this.$localIp + ':3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
         this.reservList = response.data[0];
         this.medicineList = response.data[1];
 
@@ -138,7 +138,7 @@ export default {
       return this.numCard;
     },
     prescription(medID, idx) {
-            this.$http.get('http://localhost:3000/api/prescription?id=?' + medID).then((response) => {
+            this.$http.get('http://' + this.$localIp + ':3000/api/prescription?id=?' + medID).then((response) => {
                     this.cardList.splice(idx, 1);
                     this.$emit('updateAlarmBadge', this.cardList.length);
             });
@@ -146,7 +146,7 @@ export default {
     pushList() {
         //  testing code
         /*
-        this.$http.get('http://localhost:3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
+        this.$http.get('http://' + this.$localIp + ':3000/api/reservation?id='+  MainPage.patientInfo['id']).then((response) =>     {
           var cnt = response.data[0].length;
           var i = 0;
           for(i = 0; i < cnt; i++) {
@@ -160,7 +160,7 @@ export default {
           }
         });
         */
-    //      this.$http.get('http://localhost:3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
+    //      this.$http.get('http://' + this.$localIp + ':3000/api/alarm?id='+  MainPage.patientInfo['id']).then((response) => {
     //     this.reservList = response.data[0];
     //     this.medicineList = response.data[1];
 
