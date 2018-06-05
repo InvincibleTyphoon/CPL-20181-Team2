@@ -1,16 +1,42 @@
 <template id="PersonalInfoPage">
   <v-ons-page>
-    <v-ons-button @click="popPage()" class="someButton">
-        뒤로
-    </v-ons-button>
+    <v-ons-card>
+        <v-ons-col>
+            <v-ons-row>
+                <div>
+                    <v-ons-icon icon="contacts"></v-ons-icon>
+                </div>
+                <div> {{ personName }}</div>
+            </v-ons-row>
+
+            <v-ons-row>
+                <div> {{ "생년월일 " + personBirthday.getFullYear() + "-" + (personBirthday.getMonth() + 1) + "-" + personBirthday.getDate()}} </div>
+            </v-ons-row>
+            <v-ons-row>
+                <div> {{ "TEL " + personPhone }} </div>
+            </v-ons-row>
+        </v-ons-col>
+
+    </v-ons-card>
+
+    <v-ons-col>
+            <v-ons-button class="someButton">수정</v-ons-button>
+            <v-ons-button @click="popPage()" class="someButton">뒤로</v-ons-button>
+    </v-ons-col>
+  
   </v-ons-page>
 </template>
 
 <script>
+import MainPage from '../MainPage'
+
 export default {
   name: 'PersonalInfoPage',
   data () {
     return {
+            personName: MainPage.patientInfo.name,
+            personBirthday: new Date(MainPage.patientInfo.birthday),
+            personPhone: MainPage.patientInfo.phone,
     }
   },
   methods: {

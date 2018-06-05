@@ -10,12 +10,13 @@
 
 <script>
 import PersonalMainPage from "./PersonalMainPage"
-
+import MainPage from '../MainPage.vue'
 export default {
   name: 'PersonalPage',
   data () {
     return {
       pageStack: [PersonalMainPage],
+      personInfo: MainPage.patientInfo,
     }
   },
   methods: {
